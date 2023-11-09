@@ -69,7 +69,8 @@ def set_member(msg: typing.Any, member: str, value: typing.Any) -> None:
     target = msg
     for i in ml[:-1]:
         target = getattr(target, i)
-    setattr(target, ml[-1], value)
+    member_data_type=type(getattr(target,ml[-1])) # Casting to deal with byte datatypes
+    setattr(target, ml[-1], member_data_type(value))
 
 
 class JoyTeleopCommand:
